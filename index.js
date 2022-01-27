@@ -62,6 +62,25 @@ const promptUser = () => {
 
   ]);
 };
+
+function getLicense(License) {
+  let licenseIcon;
+  switch (License) {
+      case "MIT":
+      licenseIcon = { name: "MIT", color: "blue"};
+      break;
+      case "Apache 2.0":
+      licenseIcon = { name: "Apache+2.0", color: "green"};
+      break;
+      case "GNU GPL 3.0":
+      licenseIcon = { name: "GNU+GPL+3.0", color: "red"};
+      break;
+  }
+  return `![License](https://img.shields.io/static/v1?label=license&message=${licenseIcon.name}&color=${licenseIcon.color})`;    
+
+};
+
+
 function generateREADME({ title, description, deployed, github, installation, license, usage, credits, contribute, tests, email }) {
 
 
@@ -77,8 +96,22 @@ function generateREADME({ title, description, deployed, github, installation, li
   7.[Contribute](#Contribute)
   8.[Tests](#Tests)
   
-  ## Description
-  ${description}`;
+
+  ## Description  
+  ${description}  
+  ## License  
+  ${getLicense(license)}  
+  [Link to License](./LICENSE.md)     
+  ## Deployed Application  
+  ${deployed}  
+  ## Github Repo  
+  ${github}  
+  ## Installation  
+  ${installation}  
+  ## Usage  
+  ${usage}  
+  ## Credits  
+  ${credits} `;
 }
 //   .then((answers) => {
 //     const htmlPageContent = generateREADME(answers);
