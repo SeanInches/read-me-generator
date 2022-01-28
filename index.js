@@ -20,27 +20,32 @@ const promptUser = () => {
     },
     {
       type: 'input',
-      name: 'Github',
+      name: 'githubusername',
+      message: 'What is your github username?',
+    },
+    {
+      type: 'input',
+      name: 'github',
       message: 'Provide a link to your Github Repo',
     },
     {
       type: 'input',
-      name: 'Installation',
+      name: 'installation',
       message: 'What are the steps require to install your project?'
     },
     {
       type: 'input',
-      name: 'Usage',
+      name: 'usage',
       message: 'Provide Instructions/Examples for use. Add Screenshots.',
     },
     {
       type: 'input',
-      name: 'Credits',
+      name: 'credits',
       message: 'List any collaborators or references used.',
     },
     {
       type: 'list',
-      name: 'License',
+      name: 'license',
       message: 'Select a license.',
       choices: ['MIT', 'Apache 2.0', 'GNU GPL 3.0']
     },
@@ -51,21 +56,21 @@ const promptUser = () => {
     },
     {
       type: 'input',
-      name: 'Tests',
+      name: 'tests',
       message: 'Write tests for the application and examples how to run them here',
     },
     {
       type: 'input',
-      name: 'Email',
+      name: 'email',
       message: 'Enter email address here.',
     },
 
   ]);
 };
 
-function getLicense(License) {
+function getLicense(license) {
   let licenseIcon;
-  switch (License) {
+  switch (license) {
     case "MIT":
       licenseIcon = { name: "MIT", color: "blue" };
       break;
@@ -80,9 +85,9 @@ function getLicense(License) {
 
 };
 
-function createLicenseMd(License) {
+function createLicenseMd(license) {
   let x;
-  switch (License) {
+  switch (license) {
     case "MIT": return mitFunction();
       break;
     case "Apache 2.0": return apacheFunction();
@@ -90,11 +95,11 @@ function createLicenseMd(License) {
     case "GNU GPL 3.0": return gnuFunction();
       break;
   }
-  return License;
+  return license;
 }
 
-function generateREADME({ title, description, deployed, github, installation, license, usage, credits, contribute, tests, email }) {
-  fs.writeFileSync('LICENSE.md', createLicenseMd(License));
+function generateREADME({ title, description, deployed, githubusername, github, installation, license, usage, credits, contribute, tests, email }) {
+  fs.writeFileSync('LICENSE.md', createLicenseMd(license));
 
   return `
   #${title}
@@ -125,8 +130,8 @@ function generateREADME({ title, description, deployed, github, installation, li
   ## Credits  
   ${credits} 
   ## Badges  
-  ![Your Repository's Stats](https://github-readme-stats.vercel.app/api?username=${GithubUsername}&show_icons=true)  
-  ![Your Repository's Stats](https://github-readme-stats.vercel.app/api/top-langs/?username=${GithubUsername}&theme=blue-green)        
+  ![Your Repository's Stats](https://github-readme-stats.vercel.app/api?username=${githubusername}&show_icons=true)  
+  ![Your Repository's Stats](https://github-readme-stats.vercel.app/api/top-langs/?username=${githubusername}&theme=blue-green)        
   ## Contribute  
   ${contribute}  
   ## Tests  
