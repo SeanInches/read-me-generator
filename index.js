@@ -102,7 +102,7 @@ function generateREADME({ title, description, deployed, githubusername, github, 
   fs.writeFileSync('LICENSE.md', createLicenseMd(license));
 
   return `
-  #${title}
+  ## ${title}
   ## Table of Contents
   1.[Description](#Description)
   2.[Installation](#Installation)
