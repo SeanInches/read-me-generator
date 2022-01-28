@@ -51,7 +51,7 @@ const promptUser = () => {
     },
     {
       type: 'input',
-      name: 'Contribute',
+      name: 'contribute',
       message: 'How to contribute to this project.',
     },
     {
