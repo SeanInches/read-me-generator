@@ -5,6 +5,16 @@ const promptUser = () => {
   return inquirer.prompt([
     {
       type: 'input',
+      name: 'fullname',
+      message: 'What is your full name?',
+    },
+    {
+      type: 'input',
+      name: 'year',
+      message: 'What year is it?',
+    },
+    {
+      type: 'input',
       name: 'title',
       message: 'Title of your project?',
     },
@@ -88,11 +98,11 @@ function getLicense(license) {
 function createLicenseMd(license) {
   let x;
   switch (license) {
-    case "MIT": return mitFunction();
+    case "MIT": return mitFunction({fullname, year});
       break;
-    case "Apache 2.0": return apacheFunction();
+    case "Apache 2.0": return apacheFunction({fullname, year});
       break;
-    case "GNU GPL 3.0": return gnuFunction();
+    case "GNU GPL 3.0": return gnuFunction({fullname, year});
       break;
   }
   return license;
@@ -139,19 +149,7 @@ function generateREADME({ title, description, deployed, githubusername, github, 
   ## Questions?  
   [Contact Me via Email Here](mailto:${email})`;
 }
-//   .then((answers) => {
-//     const htmlPageContent = generateREADME(answers);
 
-//     fs.writeFile('index.html', htmlPageContent, (err) =>
-//       err ? console.log(err) : console.log('Successfully created index.html!')
-//     );
-//   });
-
-
-
-// This is the init function using writefileSync to create the README file
-// TODO: Create a function to write README file
-// TODO: Create a function to initialize app
 function init() {
   promptUser()
     .then((answers) => fs.writeFileSync('generatedREADME.md', generateREADME(answers)))
@@ -160,12 +158,12 @@ function init() {
     .catch((err) => console.error(err));
 }
 
-// Function call to initialize app
+
 init();
 
-function mitFunction() {
+function mitFunction({fullname, year}) {
   return `MIT License
-Copyright (c) [2022] [Sean Inches]
+Copyright (c) [${year}] [${fullname}]
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -184,7 +182,7 @@ SOFTWARE.`;
 }
 
 
-function apacheFunction() {
+function apacheFunction({fullname, year}) {
   return `  Apache License
         Version 2.0, January 2004
      http://www.apache.org/licenses/
@@ -344,7 +342,7 @@ comment syntax for the file format. We also recommend that a
 file or class name and description of purpose be included on the
 same "printed page" as the copyright notice for easier
 identification within third-party archives.
-Copyright 2022 Sean Inches
+Copyright ${year} ${fullname}
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -357,7 +355,7 @@ limitations under the License.`;
 }
 
 
-function gnuFunction() {
+function gnuFunction({fullname, year}) {
   return ` GNU GENERAL PUBLIC LICENSE
         Version 3, 29 June 2007
 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
@@ -880,7 +878,7 @@ to attach them to the start of each source file to most effectively
 state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 <one line to give the program's name and a brief idea of what it does.>
-Copyright (C) <year>  <name of author>
+Copyright (C) ${year}  ${fullname}
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -894,7 +892,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Also add information on how to contact you by electronic and paper mail.
 If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
-  Copyright (C) 2022 Sean Inches
+  Copyright (C) ${year} ${fullname}
 This program comes with ABSOLUTELY NO WARRANTY; for details type show w.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type show c for details.
