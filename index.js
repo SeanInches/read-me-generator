@@ -95,21 +95,24 @@ function getLicense(license) {
 
 };
 
-function createLicenseMd(license) {
+function createLicenseMd(license, fullname, year) {
   let x;
   switch (license) {
-    case "MIT": return mitFunction({fullname, year});
+    case "MIT":
+      return mitFunction(fullname, year);
       break;
-    case "Apache 2.0": return apacheFunction({fullname, year});
+    case "Apache 2.0":
+      return apacheFunction(fullname, year);
       break;
-    case "GNU GPL 3.0": return gnuFunction({fullname, year});
+    case "GNU GPL 3.0":
+      return gnuFunction(fullname, year);
       break;
   }
   return license;
 }
 
-function generateREADME({ title, description, deployed, githubusername, github, installation, license, usage, credits, contribute, tests, email }) {
-  fs.writeFileSync('LICENSE.md', createLicenseMd(license));
+function generateREADME({ fullname, year, title, description, deployed, githubusername, github, installation, license, usage, credits, contribute, tests, email }) {
+  fs.writeFileSync('LICENSE.md', createLicenseMd(license, fullname, year));
 
   return `
   ## ${title}
@@ -161,9 +164,9 @@ function init() {
 
 init();
 
-function mitFunction({fullname, year}) {
+function mitFunction(fullname, year) {
   return `MIT License
-Copyright (c) [${year}] [${fullname}]
+Copyright (c) [${fullname}] [${year}]
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -182,7 +185,7 @@ SOFTWARE.`;
 }
 
 
-function apacheFunction({fullname, year}) {
+function apacheFunction(fullname, year) {
   return `  Apache License
         Version 2.0, January 2004
      http://www.apache.org/licenses/
@@ -355,7 +358,7 @@ limitations under the License.`;
 }
 
 
-function gnuFunction({fullname, year}) {
+function gnuFunction(fullname, year) {
   return ` GNU GENERAL PUBLIC LICENSE
         Version 3, 29 June 2007
 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
@@ -878,7 +881,7 @@ to attach them to the start of each source file to most effectively
 state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 <one line to give the program's name and a brief idea of what it does.>
-Copyright (C) ${year}  ${fullname}
+Copyright (C) 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -892,7 +895,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Also add information on how to contact you by electronic and paper mail.
 If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
-  Copyright (C) ${year} ${fullname}
+  Copyright (C) ${year}  ${fullname}
 This program comes with ABSOLUTELY NO WARRANTY; for details type show w.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type show c for details.
