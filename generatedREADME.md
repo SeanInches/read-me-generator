@@ -1,5 +1,5 @@
 
-  ## dsdad
+  ## README Generator
   ## Table of Contents
   1.[Description](#Description)
   2.[Installation](#Installation)
@@ -12,26 +12,26 @@
   
 
   ## Description  
-  aa  
+  Generates a professional README.md file quickly based off of user input prompts.  
   ## License  
-  ![License](https://img.shields.io/static/v1?label=license&message=Apache+2.0&color=green)  
+  ![License](https://img.shields.io/static/v1?label=license&message=MIT&color=blue)  
   [Link to License](./LICENSE.md)     
   ## Deployed Application  
-  da  
+  https://seaninches.github.io/read-me-generator/    
   ## Github Repo  
-  ad  
+  https://github.com/SeanInches/read-me-generator    
   ## Installation  
-  a  
+  In your command line, type "npm i inquirer" and "npm i fs" then "node index.js". Fill out the prompts.  
   ## Usage  
-  dd  
+  insert screenshot here   
   ## Credits  
-  ad 
+  npmjs and alexandresanlimnpmjs and alexandresanlim 
   ## Badges  
-  ![Your Repository's Stats](https://github-readme-stats.vercel.app/api?username=dadad&show_icons=true)  
-  ![Your Repository's Stats](https://github-readme-stats.vercel.app/api/top-langs/?username=dadad&theme=blue-green)        
+  ![Your Repository's Stats](https://github-readme-stats.vercel.app/api?username=SeanInches&show_icons=true)  
+  ![Your Repository's Stats](https://github-readme-stats.vercel.app/api/top-langs/?username=SeanInches&theme=blue-green)        
   ## Contribute  
-  dasda  
+  None.  
   ## Tests  
-  da  
+  None.  
   ## Questions?  
-  [Contact Me via Email Here](mailto:a)
+  [Contact Me via Email Here](mailto:seanminches@gmail.com)

@@ -78,6 +78,21 @@ const promptUser = () => {
   ]);
 };
 
+function createLicenseMd(license, fullname, year) {
+  switch (license) {
+    case "MIT":
+      return mitFunction(fullname, year);
+      break;
+    case "Apache 2.0":
+      return apacheFunction(fullname, year);
+      break;
+    case "GNU GPL 3.0":
+      return gnuFunction(fullname, year);
+      break;
+  }
+  return license;
+}
+
 function getLicense(license) {
   let licenseIcon;
   switch (license) {
@@ -95,20 +110,14 @@ function getLicense(license) {
 
 };
 
-function createLicenseMd(license, fullname, year) {
-  let x;
-  switch (license) {
-    case "MIT":
-      return mitFunction(fullname, year);
-      break;
-    case "Apache 2.0":
-      return apacheFunction(fullname, year);
-      break;
-    case "GNU GPL 3.0":
-      return gnuFunction(fullname, year);
-      break;
-  }
-  return license;
+
+
+function init() {
+  promptUser()
+    .then((answers) => fs.writeFileSync('generatedREADME.md', generateREADME(answers)))
+    .then(() => console.log('Successfully wrote to readme.md'))
+    .then(() => console.log('Successfully wrote to LICENSE.md'))
+    .catch((err) => console.error(err));
 }
 
 function generateREADME({ fullname, year, title, description, deployed, githubusername, github, installation, license, usage, credits, contribute, tests, email }) {
@@ -152,15 +161,6 @@ function generateREADME({ fullname, year, title, description, deployed, githubus
   ## Questions?  
   [Contact Me via Email Here](mailto:${email})`;
 }
-
-function init() {
-  promptUser()
-    .then((answers) => fs.writeFileSync('generatedREADME.md', generateREADME(answers)))
-    .then(() => console.log('Successfully wrote to readme.md'))
-    .then(() => console.log('Successfully wrote to LICENSE.md'))
-    .catch((err) => console.error(err));
-}
-
 
 init();
 
